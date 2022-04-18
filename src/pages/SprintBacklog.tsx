@@ -1,6 +1,22 @@
+import { useState } from "react";
 import SprintInputRow from "../components/SprintInputRow";
 
+interface RowI {
+    task: string,
+    requirement: string,
+    test: string,
+    estimate: string,
+    actual: string
+}
+
 const SprintBacklog = () => {
+  const [row, setRow] = useState<RowI>({
+    task: 'default',
+    requirement: 'default',
+    test: 'default',
+    estimate: 'default',
+    actual: 'default'
+})
   return (
     <div className="flex items-center justify-center min-h-screen">
       <table className="table text-gray-400 border-separate space-y-6 text-sm">
@@ -14,9 +30,10 @@ const SprintBacklog = () => {
           </tr>
         </thead>
         <tbody>
-            <SprintInputRow />
+            <SprintInputRow newRow={setRow} />
         </tbody>
       </table>
+      <div>{row.task + row.requirement + row.test}</div>
     </div>
   );
 };
