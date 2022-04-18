@@ -1,22 +1,10 @@
-import React from 'react';
+import SprintBacklog from './pages/SprintBacklog';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="border-solid border-2 border-sky-500">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="bg-gray-900">
+      <SprintBacklog />
     </div>
   );
 }
