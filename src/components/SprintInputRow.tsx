@@ -23,19 +23,19 @@ const SprintInputRow = () => {
       {edit ? (
         <>
           <td>
-            <input name="task" onChange={handleChange}></input>
+            <input name="task" value={input?.task || ''} onChange={handleChange}></input>
           </td>
           <td>
-            <input name="requirement" onChange={handleChange}></input>
+            <input name="requirement" value={input?.requirement || ''} onChange={handleChange}></input>
           </td>
           <td>
-            <input name="testStatus" onChange={handleChange}></input>
+            <input name="testStatus" value={input?.testStatus || ''} onChange={handleChange}></input>
           </td>
           <td>
-            <input name="estimatedTime" onChange={handleChange}></input>
+            <input name="estimatedTime" value={input?.estimatedTime || ''} onChange={handleChange}></input>
           </td>
           <td>
-            <input name="actualTime" onChange={handleChange}></input>
+            <input name="actualTime" value={input?.actualTime || ''} onChange={handleChange}></input>
           </td>
           <td>
             <button onClick={() => setEdit(!edit)}>Save</button>
