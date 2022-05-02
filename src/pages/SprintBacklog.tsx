@@ -1,23 +1,18 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import SprintInputRow from "../components/SprintInputRow";
 
-interface RowI {
-    task: string,
-    requirement: string,
-    test: string,
-    estimate: string,
-    actual: string
-}
-
 const SprintBacklog = () => {
+  const [rowList, setRowList] = useState<JSX.Element[]>([])
+
   
   const addRow = () => {
-
+    setRowList(rowList?.concat(<SprintInputRow key={rowList.length} />))
+    console.log(rowList)
   }
 
   return (
     <div className="flex items-center justify-center min-h-screen">
-      <button >Add row</button>
+      <button onClick={() => addRow()}>Add row</button>
       <table className="table text-gray-400 border-separate space-y-6 text-sm">
         <thead className="bg-gray-800 text-gray-500">
           <tr>
@@ -30,7 +25,7 @@ const SprintBacklog = () => {
           </tr>
         </thead>
         <tbody>
-            <SprintInputRow />
+            {rowList}
         </tbody>
       </table>
     </div>
