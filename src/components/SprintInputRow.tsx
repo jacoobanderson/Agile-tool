@@ -1,42 +1,70 @@
-import React from "react";
+import React, { useState } from 'react';
 
-type rowProps = {
-  newRow: (row: React.SetStateAction<any>) => void;
-};
+interface Row {
+  task?: string;
+  requirement?: string;
+  testStatus?: string;
+  estimatedTime?: string;
+  actualTime?: string;
+}
 
+const SprintInputRow = () => {
+  const [edit, setEdit] = useState<Boolean>(true);
+  const [input, setInput] = useState<Row | null>(null);
 
-const SprintInputRow = (newRow: rowProps) => {
-
-    
-    const addRow = () => {
-        newRow.newRow({
-            task: 'Works',
-            requirement: 'Works',
-            test: 'Works',
-            estimate: 'Works',
-            actual: 'Works'
-        })
-    }
+  const handleChange = (e: any) => {
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value
+    });
+  };
   return (
     <tr className="border-2 border-solid border-red-500">
-      <td>
-        <textarea></textarea>
-      </td>
-      <td>
-        <textarea></textarea>
-      </td>
-      <td>
-        <input></input>
-      </td>
-      <td>
-        <input></input>
-      </td>
-      <td>
-        <input></input>
-      </td>
-      <button onClick={addRow} className="border-solid border-2 border-red-500" type="submit">
-        Submit
-      </button>
+      {edit ? (
+        <>
+          <td>
+            <input name="task" onChange={handleChange}></input>
+          </td>
+          <td>
+            <input name="requirement" onChange={handleChange}></input>
+          </td>
+          <td>
+            <input name="testStatus" onChange={handleChange}></input>
+          </td>
+          <td>
+            <input name="estimatedTime" onChange={handleChange}></input>
+          </td>
+          <td>
+            <input name="actualTime" onChange={handleChange}></input>
+          </td>
+          <td>
+            <button onClick={() => setEdit(!edit)}>Save</button>
+            <button>Remove</button>
+          </td>
+        </>
+      ) : (
+        <>
+          <td>
+            <div>{input?.task}</div>
+          </td>
+          <td>
+           <div>{input?.requirement}</div>
+          </td>
+          <td>
+            <div>{input?.testStatus}</div>
+          </td>
+          <td>
+            <div>{input?.estimatedTime}</div>
+          </td>
+          <td>
+           <div>{input?.actualTime}</div>
+          </td>
+          <td>
+            <button onClick={() => setEdit(!edit)}>Edit</button>
+            <button>Remove</button>
+          </td>
+        </>
+      )}
     </tr>
   );
 };
